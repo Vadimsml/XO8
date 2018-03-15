@@ -1,5 +1,6 @@
 package io.hexlet.xo.model;
 
+import io.hexlet.xo.model.exception.InvalidPointException;
 import org.junit.Test;
 
 import java.awt.*;
@@ -26,5 +27,59 @@ public class FieldTest {
         final Figure actualFigure = field.getFigure(inputPoint);
 
         assertEquals (inputFigure, actualFigure);
+    }
+
+    @Test
+    public void getFigureWhenFigureIsNotSet() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0,0);
+
+       final Figure actualFigure = field.getFigure(inputPoint);
+
+       assertNull(actualFigure);
+    }
+
+    @Test
+    public void getFigureWhenXIsLessZero() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(-1,0);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        } catch (final InvalidPointException e) {}
+    }
+
+    @Test
+    public void getFigureWhenYIsLessZero() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0,-1);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        } catch (final InvalidPointException e) {}
+    }
+
+    @Test
+    public void getFigureWhenXIsMoreThenSize() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(field.getSize()+1,0);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        } catch (final InvalidPointException e) {}
+    }
+
+    @Test
+    public void getFigureWhenYIsMoreThenSize() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0,field.getSize()+1);
+
+        try {
+            final Figure actualFigure = field.getFigure(inputPoint);
+            fail();
+        } catch (final InvalidPointException e) {}
     }
 }
