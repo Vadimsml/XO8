@@ -25,6 +25,7 @@ public class WinnerController {
                 return field.getFigure(new Point(1, 1));
 
         } catch (InvalidPointException e) {e.printStackTrace();}
+        return null;
     }
 
 
