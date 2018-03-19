@@ -1,4 +1,5 @@
 package io.hexlet.xo.model.exception;
 
-public class InvalidPointException extends AbstractXOException {
-}
+import java.awt.*;
+
+public class InvalidPointException extends AbstractXOException {}
